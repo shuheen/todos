@@ -12,8 +12,9 @@ export class AppComponent {
   constructor(private auth: AuthService, private route: Router, private userService: UserService){
     auth.user$.subscribe(user => {
       if(user){
+        console.log(user);
         this.userService.save(user);
-        route.navigate(['/todos'])
+        //route.navigate(['/todos'])
       }
     })
   }

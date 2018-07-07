@@ -19,6 +19,7 @@ import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { UserService } from './services/user.service';
+import { AuthGuardService } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,7 @@ import { UserService } from './services/user.service';
     
   ],
   imports: [
- 
+
   BrowserModule,
     FormsModule,
     CustomFormsModule,
@@ -42,13 +43,13 @@ import { UserService } from './services/user.service';
     RouterModule.forRoot(
       [
         {
-          path: '', component: SigninComponent
+          path: '', component: SigninComponent,
         },
         {
           path: 'calendar', component: CalendarComponent
         },
         {
-          path: 'todos', component: TodosComponent
+          path: 'todos', component: TodosComponent, canActivate:[AuthGuardService]
         },
         {
           path: 'signup', component: SignupComponent
@@ -58,7 +59,8 @@ import { UserService } from './services/user.service';
   ],
   providers: [
     AuthService,
-    UserService
+    UserService,
+    AuthGuardService,
   ],
   bootstrap: [AppComponent]
 })
