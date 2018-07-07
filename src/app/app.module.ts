@@ -20,6 +20,9 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { UserService } from './services/user.service';
 import { AuthGuardService } from './services/auth-guard.service';
+import { MyProfileComponent } from './my-profile/my-profile.component';
+import { ManageProfileComponent } from './manage-profile/manage-profile.component';
+import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +32,8 @@ import { AuthGuardService } from './services/auth-guard.service';
     NavigationComponent,
     SigninComponent,
     SignupComponent,
+    MyProfileComponent,
+    ManageProfileComponent,
     
   ],
   imports: [
@@ -46,13 +51,19 @@ import { AuthGuardService } from './services/auth-guard.service';
           path: '', component: SigninComponent,
         },
         {
-          path: 'calendar', component: CalendarComponent
+          path: 'signup', component: SignupComponent
         },
         {
           path: 'todos', component: TodosComponent, canActivate:[AuthGuardService]
         },
         {
-          path: 'signup', component: SignupComponent
+          path: 'calendar', component: CalendarComponent, canActivate:[AuthGuardService]
+        },
+        {
+          path: 'my-profile', component: MyProfileComponent, canActivate:[AuthGuardService]
+        },
+        {
+          path: 'manage-profile', component: ManageProfileComponent, canActivate:[AuthGuardService, AdminAuthGuardService]
         }
       ]
     )
@@ -61,6 +72,7 @@ import { AuthGuardService } from './services/auth-guard.service';
     AuthService,
     UserService,
     AuthGuardService,
+    AdminAuthGuardService
   ],
   bootstrap: [AppComponent]
 })

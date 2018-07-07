@@ -7,12 +7,12 @@
     <ng-template #anonymousUser>
       <a class="btn btn-primary" routerLink="">Sign In</a>
     </ng-template>
-    <div class="d-inline-block" ngbDropdown *ngIf="auth.user$ | async as user ; else anonymousUser" #myDrop="ngbDropdown">
-      <button (click)="myDrop.toggle()" class="btn btn-outline-primary mr-2" id="dropdownConfig" ngbDropdownAnchor>{{user.displayName}} &nbsp;</button>
+    <div class="d-inline-block" ngbDropdown *ngIf="appUser; else anonymousUser" #myDrop="ngbDropdown">
+      <button (click)="myDrop.toggle()" class="btn btn-outline-primary mr-2" id="dropdownConfig" ngbDropdownAnchor>{{appUser.displayName}} &nbsp;</button>
       <div ngbDropdownMenu aria-labelledby="dropdownConfig">
         <a class="dropdown-item" routerLink="/my-profile">My Profile</a>
         
-         <ng-container *ngIf="user.isAdmin">
+         <ng-container *ngIf="appUser.isAdmin">
           <a class="dropdown-item" routerLink="/manage-profile">Manage Profiles</a>
         </ng-container>
         <div class="dropdown-divider"></div>

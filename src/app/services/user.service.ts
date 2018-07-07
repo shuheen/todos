@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
 import * as firebase from 'firebase';
+import { User } from './../model/user';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +24,10 @@ export class UserService {
     if(user.email == "mail.shuaibkhan@gmail.com")
       this.db.object('/users/'+ user.uid).update(adminObj)
     else
-      this.db.object('/users/' + user.uid).update(normalObj);
-   
+      this.db.object('/users/' + user.uid).update(normalObj);  
+  }
+
+  get(uid:string): FirebaseObjectObservable<User>{
+    return this.db.object('/users/' + uid);
   }
 }

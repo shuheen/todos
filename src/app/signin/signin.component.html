@@ -9,14 +9,16 @@
           </small>
     <label for="inputPassword" class="sr-only">Password</label>
     <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password" ngModel #password="ngModel">
-    
+    <small id="pass" *ngIf="password.touched && password.invalid" class="form-text text-danger">
+      <span *ngIf="password.errors.required">Please enter your Password</span>
+    </small>
     <div class="checkbox mb-3">
       <!-- <label>
         <input type="checkbox" value="remember-me"> Remember me
       </label> -->
       <a routerLink="/register" class="float-right"></a>
     </div>
-    <button class="btn btn-lg btn-primary btn-block">Sign In</button>
+    <button class="btn btn-lg btn-primary btn-block" [disabled]="!signInForm.form.valid">Sign In</button>
     <div class="dropdown-divider"></div>
     <a class="btn btn-lg btn-primary btn-block text-light" routerLink="/signup">New User? Register Here</a>
     <!-- <p class="mt-5 mb-3 text-muted">© 2017-2018</p> -->
