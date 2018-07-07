@@ -2,7 +2,29 @@
   <a routerLink="/" class="my-0 mr-md-auto font-weight-normal">
     <img src="../../assets/logo.png" class="img-logo">
   </a>
-  <nav class="my-2 my-md-0 mr-md-3 navbar-right">
-    <a class="btn btn-primary" routerLink="/">Sign In</a>
+  {{user | json}}
+  <nav  class="my-2 my-md-0 mr-md-3 navbar-right">
+    <ng-template #anonymousUser>
+      <a class="btn btn-primary" routerLink="/">Sign In</a>
+    </ng-template>
+    <div class="d-inline-block" ngbDropdown *ngIf="user; else anonymousUser" #myDrop="ngbDropdown">
+      <button (click)="myDrop.toggle()" class="btn btn-outline-primary mr-2" id="dropdownConfig" ngbDropdownAnchor>{{user.displayName}} &nbsp;</button>
+      <div ngbDropdownMenu aria-labelledby="dropdownConfig">
+        <a class="dropdown-item" routerLink="/my-orders">My Profile</a>
+        
+         <ng-container *ngIf="user.isAdmin">
+          <a class="dropdown-item" routerLink="/admin/admin-orders">Manage Profiles</a>
+        </ng-container>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)="logout()">Log out</a>
+      </div>
+      </div>
+    <!-- <div ngbDropdown *ngIf="user; else anonymousUser" class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle text-light" ngbDropdownToggle id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.displayName}}</a>
+      <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown03">
+        
+       
+      </div>
+    </div> -->
   </nav>
 </div>

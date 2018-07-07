@@ -3,6 +3,7 @@ import { NgModule, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { CustomFormsModule } from 'ng2-validation'
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
@@ -17,6 +18,7 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
+    NgbModule.forRoot(),
     RouterModule.forRoot(
       [
         {
@@ -55,6 +58,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
   ],
   providers: [
     AuthService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

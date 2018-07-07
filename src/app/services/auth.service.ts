@@ -2,20 +2,21 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from 'angularfire2/auth';
 import * as firebase from 'firebase';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { userInfo } from 'os';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { User } from './../model/user';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
- 
+  user$: Observable<firebase.User>;
   constructor(private afAuth: AngularFireAuth, private db: AngularFireDatabase, private route: Router, private router: ActivatedRoute) {
-    console.log(firebase.auth().currentUser);
+    this.user$  = afAuth.authState
   }
 
 
   signup(email, pass, disp){
-    this.returnUrl();
+    // this.returnUrl();
     this.afAuth.auth.createUserWithEmailAndPassword(email, pass).then(function(user) {
       //console.log(user);
       // [END createwithemail]
@@ -28,11 +29,13 @@ export class AuthService {
           photoURL: null
       }).then(function() {
         firebase.auth().currentUser.getIdToken(true);
+        
         // Update successful.
       }, function(error) {
         console.log(error);
           // An error happened.
       });
+      this.rou
   }, function(error) {
       // Handle Errors here.
       //var errorCode = error.code;
@@ -46,14 +49,6 @@ export class AuthService {
       // }
       // [END_EXCLUDE]
   });
-
-
-  // this.route.navigate(['/signin']);
-  this.db.list('/users').push({
-    email: firebase.auth().currentUser.email,
-    displayName: firebase.auth().currentUser.displayName
-  })
-  
   }
 
 
@@ -75,6 +70,16 @@ export class AuthService {
   returnUrl(){
     let returnUrl = this.router.snapshot.queryParamMap.get('returnUrl') || '/';
     localStorage.setItem('returnUrl', returnUrl);
-    console.log('')
   }
+
+  // get appUser$(): Observable<User>{
+  //   // return this.user$
+  //     // .switchMap(user => {
+  //     //   if(user){
+  //     //    return this.userService.get(user.uid)
+  //     //   }else{
+  //     //     return Observable.of(null);
+  //     //   }
+  //     // })
+  // }
 }

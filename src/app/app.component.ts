@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { AuthService } from './../app/services/auth.service';
+import { Router } from '@angular/router';
+import { UserService } from './../app/services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  constructor(private auth: AuthService, private route: Router, private userService: UserService){
+    auth.user$.subscribe(user => {
+      if(user){
+        this.userService.save(user);
+        route.navigate(['/todos'])
+      }
+    })
+  }
 }
