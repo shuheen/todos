@@ -1,24 +1,24 @@
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom box-shadow">
+<div class="d-flex flex-column flex-md-row align-items-center px-md-4 p-3 mb-3 border-bottom box-shadow theme-bg">
   <a routerLink="/" class="my-0 mr-md-auto font-weight-normal">
     <img src="../../assets/logo.png" class="img-logo">
   </a>
   {{user | json}}
   <nav  class="my-2 my-md-0 mr-md-3 navbar-right">
     <ng-template #anonymousUser>
-      <a class="btn btn-primary" routerLink="">Sign In</a>
+      <button mat-button class="text-white" color="basic">Sign In</button>
     </ng-template>
-    <div class="d-inline-block" ngbDropdown *ngIf="appUser; else anonymousUser" #myDrop="ngbDropdown">
-      <button (click)="myDrop.toggle()" class="btn btn-primary mr-2" id="dropdownConfig" ngbDropdownAnchor>{{appUser.displayName}} &nbsp;</button>
-      <div ngbDropdownMenu aria-labelledby="dropdownConfig">
-        <a class="dropdown-item" routerLink="/my-profile">My Profile</a>
-        
-         <ng-container *ngIf="appUser.isAdmin">
-          <a class="dropdown-item" routerLink="/manage-profile">Manage Profiles</a>
+    <ng-container *ngIf="appUser; else anonymousUser">
+    <button mat-button [matMenuTriggerFor]="menu" color="basic" class="text-white">{{appUser.displayName}}&nbsp; <mat-icon class="text-white">arrow_drop_down</mat-icon></button>
+      <mat-menu #menu="matMenu"> 
+        <button routerLink="/my-profile" mat-menu-item>Profile</button>
+        <ng-container *ngIf="appUser.isAdmin">
+          <button routerLink="/manage-profile" mat-menu-item>Manage Profiles</button>
         </ng-container>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)="logout()">Log out</a>
-      </div>
-      </div>
+        <button  mat-menu-item (click)="logout()">Sign Out</button>
+      </mat-menu>
+    </ng-container>
+    
     <!-- <div ngbDropdown *ngIf="user; else anonymousUser" class="nav-item dropdown">
       <a class="nav-link dropdown-toggle text-light" ngbDropdownToggle id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ user.displayName}}</a>
       <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown03">

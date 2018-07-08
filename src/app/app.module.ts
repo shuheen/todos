@@ -1,9 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import { NgModule, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { CustomFormsModule } from 'ng2-validation'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+
+
+import {MatButtonModule} from '@angular/material/button';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatIconModule} from '@angular/material/icon';
 
 import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
@@ -37,10 +44,17 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
     
   ],
   imports: [
-
-  BrowserModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule,
     FormsModule,
     CustomFormsModule,
+
+    MatButtonModule,
+    MatMenuModule,
+    MatIconModule,
+
+
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,

@@ -1,9 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/dist/css/bootstrap.css';
-
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import 'https://fonts.googleapis.com/icon?family=Material+Icons';
 .form-signin {
     width: 100%;
     max-width: 330px;
     padding: 15px;
     margin: auto;
 }
+body{
+    background-color: #f1f1f1;
+}
+.form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+}
+.theme-bg{
+    background: #3f51b5;
+}
+[class*="mat-"]:focus, [class*="mat-"]:active{
+    outline: none;
+    border: 0;
+}
+/* mat-icon, mat-button {
+        outline: none;
+        border: 0;
+} */
