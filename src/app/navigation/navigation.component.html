@@ -8,7 +8,7 @@
       <a class="btn btn-primary" routerLink="">Sign In</a>
     </ng-template>
     <div class="d-inline-block" ngbDropdown *ngIf="appUser; else anonymousUser" #myDrop="ngbDropdown">
-      <button (click)="myDrop.toggle()" class="btn btn-outline-primary mr-2" id="dropdownConfig" ngbDropdownAnchor>{{appUser.displayName}} &nbsp;</button>
+      <button (click)="myDrop.toggle()" class="btn btn-primary mr-2" id="dropdownConfig" ngbDropdownAnchor>{{appUser.displayName}} &nbsp;</button>
       <div ngbDropdownMenu aria-labelledby="dropdownConfig">
         <a class="dropdown-item" routerLink="/my-profile">My Profile</a>
         

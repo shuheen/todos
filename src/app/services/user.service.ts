@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase, FirebaseObjectObservable } from 'angularfire2/database';
+import { AngularFireDatabase } from 'angularfire2/database';
 import * as firebase from 'firebase';
 import { User } from './../model/user';
 import { Observable } from 'rxjs/Observable';
@@ -27,7 +27,7 @@ export class UserService {
       this.db.object('/users/' + user.uid).update(normalObj);  
   }
 
-  get(uid:string): FirebaseObjectObservable<User>{
-    return this.db.object('/users/' + uid);
+  get(uid:string): Observable<any>{
+    return this.db.object('/users/' + uid).valueChanges();
   }
 }
