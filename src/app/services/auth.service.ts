@@ -62,7 +62,7 @@ export class AuthService {
       .switchMap(user => {
         if(user) return this.userService.get(user.uid);
 
-          return Observable.of(null)
+        return Observable.of(null)
       })
   }
 

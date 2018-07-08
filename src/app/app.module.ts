@@ -30,6 +30,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
+import { TodoService } from './services/todo.service';
 
 @NgModule({
   declarations: [
@@ -86,7 +87,8 @@ import { AdminAuthGuardService } from './services/admin-auth-guard.service';
     AuthService,
     UserService,
     AuthGuardService,
-    AdminAuthGuardService
+    AdminAuthGuardService,
+    TodoService
   ],
   bootstrap: [AppComponent]
 })

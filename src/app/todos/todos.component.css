@@ -5,3 +5,25 @@
     margin-bottom: 30px;
     margin-top: 50px;
 }
+.todo-title{
+    font-size: 20px;
+    font-weight: 300;
+}
+
+
+.priority-box{
+    width: 32px;
+    height: 32px;
+    background-color: #ccc;
+    border-radius: 5px;
+    margin-right: 20px
+}
+.priority-box.high{
+    background-color: rgb(221, 75, 75);
+}
+.priority-box.medium{
+    background-color: rgb(255, 166, 82);
+}
+.priority-box.low{
+    background-color: rgb(175, 235, 107);
+}
