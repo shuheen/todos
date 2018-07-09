@@ -6,7 +6,6 @@ import { TodoService } from './../services/todo.service';
 import { Todos } from './../model/todos';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
-import { AngularFireList } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-todos',
@@ -24,29 +23,46 @@ import { Observable } from 'rxjs/Observable';
 
 export class TodosComponent implements OnInit {
   todos$: Observable<any>;
+  todoList:Todos[];
   userId;
+  uid;
     constructor( private auth: AuthService, private todoService: TodoService){
-      // this.todos$ = this.todoService.getAll();
-      // console.log(this.todos);
+      
     }
 
     async ngOnInit(){
-      this.todos$ = await this.todoService.getAll().valueChanges();
-      // this.populateTodos();
-
+      await this.auth.user$.subscribe(user=>this.userId = user.uid)
+      // this.todos$ = await this.todoService.getAllByUser(this.userId).valueChanges();
+      // //await this.todos$.subscribe(todo=>this.todo = todo);
+      // this.uid = await this.todoService.getAll();
+      var x = this.todoService.getAllByUser(this.userId);
+      x.snapshotChanges().subscribe(item => {
+        this.todoList = [];
+        item.forEach(element => {
+          var y = element.payload.toJSON();
+          y["$key"] = element.key;
+          this.todoList.push(y as Todos);
+        });
+      });
     }
-    //  populateTodos(){
-    //   this.todos = this.todoService.getAll()
-    // }
+  
+
     async saveTodo(input: HTMLInputElement){
       await this.auth.user$.subscribe(user=>this.userId = user.uid)
       this.todoService.addTodo(input.value, this.userId);
       input.value = ''; 
     }
 
-    // addTodo(input: HTMLInputElement) {
-    //   this.todos.splice(0, 0, input.value);
-    //   input.value = ''; 
-    // }
+    doneTodo(key: string) {
+      if (confirm('Are you sure you want to mark this Todo as Done ?') == true) {
+        this.todoService.doneTodo(key);
+      }
+    }
 
-}
+    undoTodo(key:string){
+      if (confirm('Are you sure you want to Undo this Todo ?') == true) {
+        this.todoService.undoTodo(key);
+      }
+    }
+
+  }

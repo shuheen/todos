@@ -6,19 +6,25 @@
 
 <div class="my-3 p-3 bg-white rounded box-shadow">
   <h6 class="border-bottom border-gray pb-2 mb-0">My Todos</h6>
-  <ng-container *ngIf="todos$ | async as todos">
-  <div @fade class="media text-muted pt-3 border-bottom" *ngFor="let todo of todos; let i = index">
-    <div class="priority-box high" *ngIf="todo.priority == 'High'"></div>
-    <div class="priority-box medium" *ngIf="todo.priority == 'Medium'"></div>
-    <div class="priority-box low" *ngIf="todo.priority == 'Low'"></div>
-    <p class="media-body pb-3 mb-0 small lh-125 todo-title border-gray">
-      <span class="d-block text-gray-dark">{{ todo.title }}</span>
-      <!-- Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. -->
-    </p>
-    <button mat-button mat-raised-button class="done-icon" *ngIf="todo.status=='Incomplete'" color="primary">Done</button>
-    <button mat-button class="done-icon" *ngIf="todo.status=='Completed'" color="basic">Undo</button>
+  <ng-container *ngFor="let todo of todoList; let i = index">
+  <div @fade class="media text-muted pt-3 border-bottom" [class.bg-grey]="todo.status =='Completed'">
+    
+      <div class="priority-box high" *ngIf="todo.priority == 'High' && todo.status=='Incomplete'"></div>
+        <div class="priority-box medium" *ngIf="todo.priority == 'Medium' && todo.status=='Incomplete'"></div>
+        <div class="priority-box low" *ngIf="todo.priority == 'Low' && todo.status=='Incomplete'"></div>
+        <div class="priority-box" *ngIf="todo.status=='Completed'"></div>
+        <p class="media-body pb-3 mb-0 small lh-125 todo-title border-gray" [class.strikethrough]="todo.status =='Completed'">
+          <span class="d-block text-gray-dark">{{ todo.title }}</span>
+          <!-- Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. -->
+        </p>
+        <button mat-button mat-raised-button class="done-icon" *ngIf="todo.status=='Incomplete'" color="primary" (click)="doneTodo(todo.$key)">Done</button>
+        <button mat-button class="done-icon" *ngIf="todo.status=='Completed'" color="basic" (click)="undoTodo(todo.$key)">Undo</button>
+        
   </div>
 </ng-container>
+  
+
+
   
   
 </div>

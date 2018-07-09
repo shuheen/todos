@@ -27,3 +27,12 @@
 .priority-box.low{
     background-color: rgb(175, 235, 107);
 }
+.bg-grey{
+    background-color: #f1f1f1;
+}
+.media{
+    padding: 0 10px;
+}
+.strikethrough{
+    text-decoration: line-through;
+}
