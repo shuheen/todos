@@ -46,4 +46,10 @@ export class TodoService {
       status: 'Incomplete'
     });
   }
+
+  changePriority(key, value){
+    this.db.object('/todos/'+ key).update({
+      priority: value
+    });
+  }
 }

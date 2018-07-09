@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, text } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { UserService } from './../services/user.service';
 import { AuthService } from './../services/auth.service';
@@ -7,6 +7,7 @@ import { Todos } from './../model/todos';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
+import { element } from 'protractor';
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
@@ -63,6 +64,13 @@ export class TodosComponent implements OnInit {
       if (confirm('Are you sure you want to Undo this Todo ?') == true) {
         this.todoService.undoTodo(key);
       }
+    }
+
+
+    changePriority(element, key:string){
+      let btnText = element.textContent;
+      //console.log(btnText);
+      this.todoService.changePriority(key, btnText);
     }
 
   }
