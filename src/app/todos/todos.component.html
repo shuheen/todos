@@ -30,6 +30,9 @@
           <span class="d-block text-gray-dark">{{ todo.title }}</span>
           <!-- Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. -->
         </p>
+        <button mat-icon-button color="basic">
+            <mat-icon>edit</mat-icon>
+        </button>
         <button mat-button mat-raised-button class="done-icon" *ngIf="todo.status=='Incomplete'" color="primary" (click)="doneTodo(todo.$key)">Done</button>
         <button mat-button class="done-icon" *ngIf="todo.status=='Completed'" color="basic" (click)="undoTodo(todo.$key)">Undo</button>
         

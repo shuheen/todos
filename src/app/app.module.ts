@@ -11,6 +11,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
+import {MatSidenavModule} from '@angular/material/sidenav';
 
 import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
@@ -31,6 +32,7 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { TodoService } from './services/todo.service';
+import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { TodoService } from './services/todo.service';
     SignupComponent,
     MyProfileComponent,
     ManageProfileComponent,
+    SidenavComponent,
     
   ],
   imports: [
@@ -54,7 +57,7 @@ import { TodoService } from './services/todo.service';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
-
+    MatSidenavModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable, text } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { UserService } from './../services/user.service';
 import { AuthService } from './../services/auth.service';
@@ -37,9 +37,9 @@ export class TodosComponent implements OnInit {
       // //await this.todos$.subscribe(todo=>this.todo = todo);
       // this.uid = await this.todoService.getAll();
       var x = this.todoService.getAllByUser(this.userId);
-      x.snapshotChanges().subscribe(item => {
+      x.snapshotChanges().subscribe(todo => {
         this.todoList = [];
-        item.forEach(element => {
+        todo.forEach(element => {
           var y = element.payload.toJSON();
           y["$key"] = element.key;
           this.todoList.push(y as Todos);

@@ -36,3 +36,8 @@
 .strikethrough{
     text-decoration: line-through;
 }
+.edit-btn{
+    width: 36px;
+    height: 36px;
+    border-radius: 5px;
+}
