@@ -18,6 +18,8 @@ export class TodoService {
       title: value,
       status: 'Incomplete',
       priority: 'Low',
+      createdAt: new Date().getTime(),
+      dueAt: new Date().getTime() + 120000000,
       userId: uid
     });
   }
@@ -51,5 +53,19 @@ export class TodoService {
     this.db.object('/todos/'+ key).update({
       priority: value
     });
+  }
+
+  getTodoById(key){
+    return this.db.object('/todos/'+ key)
+  }
+
+  updateTodo(val){
+   // console.log(val.todoDueDate);
+    let dueTime = new Date(val.todoDueDate).getTime();
+     this.db.object('/todos/'+ val.hiddenKey).update({
+       title: val.todoTitle,
+       priority: val.todoPriority,
+       dueAt: dueTime
+     });
   }
 }

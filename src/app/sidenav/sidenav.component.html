@@ -1,3 +1,13 @@
-<p>
-  sidenav works!
-</p>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav #sidenav [mode]="over">
+      <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
+      
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <p></p>
+      
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+  
+  

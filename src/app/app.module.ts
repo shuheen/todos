@@ -5,13 +5,15 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { CustomFormsModule } from 'ng2-validation'
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { SidebarModule } from 'ng-sidebar';
 
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatSelectModule} from '@angular/material/select';
+
 
 import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
@@ -20,6 +22,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 import { AuthService } from './services/auth.service';
 import { AngularFireModule } from 'angularfire2';
@@ -58,11 +61,16 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     MatMenuModule,
     MatIconModule,
     MatSidenavModule,
+    MatSelectModule,
+
+    OwlDateTimeModule, 
+    OwlNativeDateTimeModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
+    SidebarModule.forRoot(),
     RouterModule.forRoot(
       [
         {
@@ -83,6 +91,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
         {
           path: 'manage-profile', component: ManageProfileComponent, canActivate:[AuthGuardService, AdminAuthGuardService]
         }
+        
       ]
     )
   ],

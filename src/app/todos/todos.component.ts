@@ -8,6 +8,7 @@ import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { element } from 'protractor';
+import { formatDate } from '@angular/common';
 @Component({
   selector: 'app-todos',
   templateUrl: './todos.component.html',
@@ -27,6 +28,9 @@ export class TodosComponent implements OnInit {
   todoList:Todos[];
   userId;
   uid;
+  thisKey;
+  thisTodo;
+  thisFullDueDate;
     constructor( private auth: AuthService, private todoService: TodoService){
       
     }
@@ -71,6 +75,47 @@ export class TodosComponent implements OnInit {
       let btnText = element.textContent;
       //console.log(btnText);
       this.todoService.changePriority(key, btnText);
+    }
+
+    getTodoDetials(key:string){
+      this.todoService.getTodoById(key).valueChanges().subscribe(t=>{
+        this.thisTodo=t;
+        function amPm(dueHour){
+          if(dueHour < 12){
+            return "AM"
+          }else{
+            return "PM"
+          }
+        }
+        let dueYear = new Date(this.thisTodo.dueAt).getFullYear();
+        let dueMonth = new Date(this.thisTodo.dueAt).getMonth();
+        let dueDate = new Date(this.thisTodo.dueAt).getDate();
+        let dueHour = new Date(this.thisTodo.dueAt).getHours();
+        let dueMinutes = new Date(this.thisTodo.dueAt).getMinutes();
+        let dueSeconds = new Date(this.thisTodo.dueAt).getSeconds();
+        let dueAmPm = amPm(dueHour);
+        this.thisFullDueDate = new Date(dueYear, dueMonth, dueDate, dueHour, dueMinutes);
+        this.thisKey = key;
+      });
+      
+      this._toggleSidebar();
+    }
+
+    updateTodo(values)
+    {
+       this.todoService.updateTodo(values);
+       this._toggleSidebar();
+      // console.log(new Date(values.todoDueDate).getTime())
+    }
+   
+    private _showSide: boolean = false;
+ 
+    private _toggleSidebar() {
+      this._showSide = !this._showSide;
+    }
+
+    closeSideNav(){
+      this._toggleSidebar();
     }
 
   }
