@@ -14,6 +14,7 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSelectModule} from '@angular/material/select';
 
+import { OrderModule } from 'ngx-order-pipe';
 
 import { AppComponent } from './app.component';
 import { TodosComponent } from './todos/todos.component';
@@ -35,7 +36,6 @@ import { MyProfileComponent } from './my-profile/my-profile.component';
 import { ManageProfileComponent } from './manage-profile/manage-profile.component';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { TodoService } from './services/todo.service';
-import { SidenavComponent } from './sidenav/sidenav.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +47,6 @@ import { SidenavComponent } from './sidenav/sidenav.component';
     SignupComponent,
     MyProfileComponent,
     ManageProfileComponent,
-    SidenavComponent,
     
   ],
   imports: [
@@ -65,6 +64,8 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 
     OwlDateTimeModule, 
     OwlNativeDateTimeModule,
+
+    OrderModule,
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule,

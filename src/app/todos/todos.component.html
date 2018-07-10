@@ -1,6 +1,6 @@
 <input type="text" #todoInput (keyup.enter)="saveTodo(todoInput)" id="todo" class="form-control new-todo" placeholder="Create a new Todo"
   required ngModel name="todo" #todo="ngModel">
-  
+  <small *ngIf="todoInput.touched && todoInput.dirty" class="text-danger">Title is required</small>
   <!-- <div class="input-group">
       <input id="createdAt" class="form-control" placeholder="yyyy-mm-dd" type="text" name="todoCreatedAt" [ngModel]="thisTodo.createdAt" (ngModelChange)="thisTodo.createdAt = $event" ngbDatepicker #d="ngbDatepicker">
       <div class="input-group-append">
@@ -12,7 +12,7 @@
 <!-- <button (click)="_toggleSidebar()">Toggle</button> -->
 <div class="my-3 p-3 bg-white rounded box-shadow">
   <h6 class="border-bottom border-gray pb-2 mb-0">My Todos</h6>
-  <ng-container *ngFor="let todo of todoList; let i = index">
+  <ng-container *ngFor="let todo of todoList | orderBy: todo.title:reverse:'case-insensitive'">
     <div @fade class="media text-muted pt-3 border-bottom" [class.bg-grey]="todo.status =='Completed'">
       <ng-template #undoStatusColor>
         <button mat-icon-button class="priority-box"></button>

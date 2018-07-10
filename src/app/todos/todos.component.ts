@@ -31,6 +31,7 @@ export class TodosComponent implements OnInit {
   thisKey;
   thisTodo;
   thisFullDueDate;
+  reverse: boolean = false;
     constructor( private auth: AuthService, private todoService: TodoService){
       
     }

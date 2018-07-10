@@ -1,5 +1,5 @@
 <div class="d-flex flex-column flex-md-row align-items-center px-md-4 p-3 mb-3 border-bottom box-shadow theme-bg">
-  <a routerLink="/" class="my-0 mr-md-auto font-weight-normal">
+  <a class="my-0 mr-md-auto font-weight-normal">
     <img src="../../assets/logo.png" class="img-logo">
   </a>
   <nav  class="my-2 my-md-0 mr-md-3 navbar-right">
@@ -7,10 +7,12 @@
       <button mat-button class="text-white" color="basic">Sign In</button>
     </ng-template>
     <ng-container *ngIf="appUser; else anonymousUser">
+      <button routerLink="/todos" mat-button mat-button-raised class="text-white">Todos</button>
     <button mat-button [matMenuTriggerFor]="menu" color="basic" class="text-white">{{appUser.displayName}}&nbsp; <mat-icon class="text-white">arrow_drop_down</mat-icon></button>
       <mat-menu #menu="matMenu"> 
-        <button routerLink="/my-profile" mat-menu-item>Profile</button>
+        
         <ng-container *ngIf="appUser.isAdmin">
+            <button routerLink="/my-profile" mat-menu-item>Profile</button>
           <button routerLink="/manage-profile" mat-menu-item>Manage Profiles</button>
         </ng-container>
         <div class="dropdown-divider"></div>

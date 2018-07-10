@@ -33,6 +33,7 @@
     "ng2-bootstrap": "^1.6.3",
     "ng2-validation": "^4.2.0",
     "ngx-bootstrap": "^3.0.1",
+    "ngx-order-pipe": "^2.0.1",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.1",
     "web-animations-js": "^2.3.1",
