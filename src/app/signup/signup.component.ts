@@ -9,7 +9,7 @@ import { AuthService } from './../services/auth.service';
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent{
-
+  
   constructor(private auth: AuthService) {
     
   }

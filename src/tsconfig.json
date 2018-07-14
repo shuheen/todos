@@ -1,12 +1,8 @@
 {
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "../out-tsc/app",
-    "module": "es2015",
-    "types": [],
-
-    
-    "baseUrl": "./",
+    "compileOnSave": false,
+    "compilerOptions": {
+      "baseUrl": "./",
+      "outDir": "./dist/out-tsc",
       "sourceMap": true,
       "declaration": false,
       "moduleResolution": "node",
@@ -20,10 +16,6 @@
         "es2017",
         "dom"
       ]
-  },
-  "exclude": [
-    "src/test.ts",
-    "**/*.spec.ts"
-  ]
-}
-
+    }
+  }
+  

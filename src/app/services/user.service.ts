@@ -8,7 +8,7 @@ import { Observable } from 'rxjs/Observable';
   providedIn: 'root'
 })
 export class UserService {
-
+  
   constructor( private db: AngularFireDatabase) { }
 
   save(user: firebase.User){

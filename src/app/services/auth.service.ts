@@ -11,6 +11,7 @@ import 'rxjs/add/observable/of';
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   user$: Observable<firebase.User>;
   constructor(private afAuth: AngularFireAuth, private route: Router, private router: ActivatedRoute, private userService: UserService) {
