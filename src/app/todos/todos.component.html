@@ -1,7 +1,7 @@
 <input type="text" #todoInput (keyup.enter)="saveTodo(todoInput)" id="todo" class="form-control new-todo" placeholder="Create a new Todo"
   required ngModel name="todo" #todo="ngModel">
-  <small *ngIf="todoInput.touched && todoInput.dirty" class="text-danger">Title is required</small>
-  <!-- <div class="input-group">
+<small *ngIf="todoInput.touched && todoInput.dirty" class="text-danger">Title is required</small>
+<!-- <div class="input-group">
       <input id="createdAt" class="form-control" placeholder="yyyy-mm-dd" type="text" name="todoCreatedAt" [ngModel]="thisTodo.createdAt" (ngModelChange)="thisTodo.createdAt = $event" ngbDatepicker #d="ngbDatepicker">
       <div class="input-group-append">
         <button mat-icon-button (click)="d.toggle()" class="calendar-icon">
@@ -10,8 +10,9 @@
       </div>
     </div> -->
 <!-- <button (click)="_toggleSidebar()">Toggle</button> -->
-<div class="my-3 p-3 bg-white rounded box-shadow">
-  <h6 class="border-bottom border-gray pb-2 mb-0">My Todos</h6>
+<div class="my-3 p-3 bg-white rounded box-shadow" style="position: relative;">
+  <h6 class="border-bottom border-gray pb-3 mb-0">My Todos</h6>
+  <button mat-raised-button class="calendar-btn" color="accent">Calendar View</button>
   <ng-container *ngFor="let todo of todoList | orderBy: todo.title:reverse:'case-insensitive'">
     <div @fade class="media text-muted pt-3 border-bottom" [class.bg-grey]="todo.status =='Completed'">
       <ng-template #undoStatusColor>
@@ -38,6 +39,9 @@
       </p>
       <button mat-icon-button color="basic" *ngIf="todo.status=='Incomplete'" (click)="getTodoDetials(todo.$key)">
         <mat-icon>edit</mat-icon>
+      </button>
+      <button mat-icon-button color="basic" *ngIf="todo.status=='Incomplete'" (click)="removeTodo(todo.$key)">
+        <mat-icon>delete</mat-icon>
       </button>
       <button mat-button mat-raised-button class="done-icon" *ngIf="todo.status=='Incomplete'" color="primary" (click)="doneTodo(todo.$key)">Done</button>
       <button mat-button class="done-icon" *ngIf="todo.status=='Completed'" color="basic" (click)="undoTodo(todo.$key)">Undo</button>
@@ -76,13 +80,15 @@
       </mat-select>
 
       <label for="createdAt">Created At</label>
-      <input id="createdAt" #todoCreatedAt="ngModel" class="form-control" placeholder="yyyy-mm-dd" type="text" name="todoCreatedAt" disabled [ngModel]="thisTodo.createdAt | date:'MM/dd/yyyy, h:mm a'" (ngModelChange)="thisTodo.createdAt = $event">
-      
-        <label for="todoDueDate">
-         Due Date:
-        </label>
-        <input id="todoDueDate" readonly name="todoDueDate" #todoDueDate="ngModel" class="dueDateInput" [owlDateTimeTrigger]="dt" [owlDateTime]="dt" [(ngModel)]="thisFullDueDate">
-        <owl-date-time #dt></owl-date-time>
+      <input id="createdAt" #todoCreatedAt="ngModel" class="form-control" placeholder="yyyy-mm-dd" type="text" name="todoCreatedAt"
+        disabled [ngModel]="thisTodo.createdAt | date:'MM/dd/yyyy, h:mm a'" (ngModelChange)="thisTodo.createdAt = $event">
+
+      <label for="todoDueDate">
+        Due Date:
+      </label>
+      <input id="todoDueDate" readonly name="todoDueDate" #todoDueDate="ngModel" class="dueDateInput" [owlDateTimeTrigger]="dt"
+        [owlDateTime]="dt" [(ngModel)]="thisFullDueDate">
+      <owl-date-time #dt></owl-date-time>
       <button mat-button mat-raised-button color="primary">Save</button>
     </form>
   </div>
